@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { createBooking, updateBookingStatus, getBookingById, getUserBookings, getActiveBookings, } from "../controllers/bookingController.js";
+import { authenticateJWT } from "../middlewares/auth.js";
+const router = Router();
+router.use(authenticateJWT);
+router.post("/", createBooking);
+router.get("/active", getActiveBookings);
+router.get("/", getUserBookings);
+router.get("/:id", getBookingById);
+router.patch("/:id/status", updateBookingStatus);
+export default router;
